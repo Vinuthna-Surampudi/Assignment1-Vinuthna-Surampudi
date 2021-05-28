@@ -5,7 +5,7 @@ using System.Linq;
 namespace Assignment1_Summer2021
 {
     using System;
-    class GFG
+    class Question2
     {
 
         // Returns true if the string
@@ -58,7 +58,7 @@ namespace Assignment1_Summer2021
         // Driver Code
         public static void Main()
         {
-            string str = "The quick brown fox jumps over the lazy";
+            string str = "The quick brown fox jumps over the lazy dog";
 
             if (checkIfPangram(str) == true)
                 Console.WriteLine(str + " is a pangram.");
