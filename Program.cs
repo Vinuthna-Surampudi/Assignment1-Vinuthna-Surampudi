@@ -4,73 +4,50 @@ using System.Linq;
 
 namespace Assignment1_Summer2021
 {
-    using System;
-    class Question2
+    public class Question2
     {
-
-        // Returns true if the string
-        // is pangram else false
-        public static bool checkIfPangram(string str)
+        public static bool CheckIfPangram(string str)
         {
+        bool[] isUsed = new bool[26];
+        int ai = (int)'a';
+        int total = 0;
 
-            // Create a hash table to mark the
-            // characters present in the string
-            // By default all the elements of
-            // mark would be false.
-            bool[] mark = new bool[26];
-
-            // For indexing in mark[]
-            int index = 0;
-
-            // Traverse all characters
-            for (int i = 0; i < str.Length; i++)
+            for (CharEnumerator en = str.ToLower().GetEnumerator(); en.MoveNext();)
             {
-                // If uppercase character, subtract 'A'
-                // to find index.
-                if ('A' <= str[i] && str[i] <= 'Z')
-                    index = str[i] - 'A';
-
-                // If lowercase character,
-                // subtract 'a' to find
-                // index.
-                else if ('a' <= str[i] && str[i] <= 'z')
-                    index = str[i] - 'a';
-
-                // If this character is other than english
-                // lowercase and uppercase characters.
-                else
-                    continue;
-
-                mark[index] = true;
+                int d = (int)en.Current - ai;
+                if (d >= 0 && d < 26)
+                    if (!isUsed[d])
+                    {
+                        isUsed[d] = true;
+                        total++;
+                    }
             }
-
-            // Return false if any
-            // character is unmarked
-            for (int i = 0; i <= 25; i++)
-                if (mark[i] == false)
-                    return (false);
-
-            // If all characters
-            // were present
-            return (true);
-        }
-
-        // Driver Code
-        public static void Main()
-        {
-            string str = "The quick brown fox jumps over the lazy dog";
-
-            if (checkIfPangram(str) == true)
-                Console.WriteLine(str + " is a pangram.");
-            else
-                Console.WriteLine(str + " is not a pangram.");
+            return (total == 26);
         }
     }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine(" Q2: Enter the string to check for pangram:");
+            string str= Console.ReadLine();
+            bool flag = Question2.CheckIfPangram(str);
+            if(flag)
+            {
+                Console.WriteLine("Yes, the given string is a pangram");
+            }
+            else
+            {
+                Console.WriteLine("No, the given string is not a pangram");
+            }
+            Console.WriteLine();
 
 
-
+            
+        }
+    }
 }
-        
+         
 
 
 
