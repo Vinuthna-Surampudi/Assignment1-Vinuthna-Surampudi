@@ -1,63 +1,56 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 
-namespace Assignment1_Summer2021
+namespace test
 {
-    public class Question2
+    class Question1
     {
-        public static bool CheckIfPangram(string str)
+        public static bool JudgeCircle(string moves)
         {
-        bool[] isUsed = new bool[26];
-        int ai = (int)'a';
-        int total = 0;
+            int x = 0;
+            int y = 0;
 
-            for (CharEnumerator en = str.ToLower().GetEnumerator(); en.MoveNext();)
+            char[] array = moves.ToCharArray();
+
+            for (int i = 0; i < array.Length; i++)
             {
-                int d = (int)en.Current - ai;
-                if (d >= 0 && d < 26)
-                    if (!isUsed[d])
-                    {
-                        isUsed[d] = true;
-                        total++;
-                    }
+                if (array[i] == 'R')
+                    x++;
+                else if (array[i] == 'L')
+                    x--;
+                else if (array[i] == 'U')
+                    y++;
+                else if (array[i] == 'D')
+                    y--;
             }
-            return (total == 26);
+            return (x == 0 && y == 0);
         }
     }
+
     class Program
     {
+
+
         static void Main(string[] args)
         {
-            Console.WriteLine(" Q2: Enter the string to check for pangram:");
-            string str= Console.ReadLine();
-            bool flag = Question2.CheckIfPangram(str);
-            if(flag)
+            Console.WriteLine("Q1 : Enter the Moves of Robot:");
+            string moves = Console.ReadLine();
+            bool pos = Question1.JudgeCircle(moves);
+            if (pos)
             {
-                Console.WriteLine("Yes, the given string is a pangram");
+                Console.WriteLine("The Robot return’s to initial Position (0,0)");
             }
             else
             {
-                Console.WriteLine("No, the given string is not a pangram");
+                Console.WriteLine("The Robot doesn’t return to the Initial Postion (0,0)");
             }
             Console.WriteLine();
 
 
-            
+
         }
     }
 }
-         
 
+        
+    
 
-
-
-
-
-
-
-
-
-
-
-            
